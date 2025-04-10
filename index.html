@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link href="./src/output.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
     </head>
     <body class="flex flex-col min-h-full">
         <header class="flex bg-background text-white p-4 shadow-md">
@@ -27,8 +29,7 @@
                 <div class="bg-secondary p-4 rounded shadow min-h-100">
                     <div class="flex flex-col h-full text-gray-300">
                         <h3 class="">COSO 1</h3>
-                        <div class="flex h-full justify-center items-center">
-                            <p>CONTENT</p>
+                        <div id="plot-1" class="flex h-full justify-center items-center">
                         </div>
                     </div>
                 </div>
