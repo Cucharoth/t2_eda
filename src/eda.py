@@ -1,4 +1,5 @@
 import os
+import time
 import requests
 import json
 import pandas as pd
@@ -7,85 +8,48 @@ from dotenv import load_dotenv
 
 load_dotenv()
 github_key = os.getenv("GITHUB_KEY")
-
-def get_commits_stats():
-    headers = {
+headers = {
         "Accept": "application/vnd.github+json",
         "Authorization": f"Bearer {github_key}"
-    }
+}
 
-    base_url = "https://api.github.com"
-    git_stats_url = "/repos/git/git/stats/contributors"
-    test_url = "/repos/cucharoth/chatroth/stats/contributors"
-    response = requests.get(base_url + git_stats_url, headers=headers)
+
+def get_data():
     
 
-
-    if response.status_code == 200:
-        data = response.json()
-        sorted_data = sorted(data, key=lambda x: x["total"], reverse=True)
-
-        # parsing
-        df = pd.json_normalize(
-            sorted_data, 
-            record_path=None, 
-            meta=None, 
-            errors='ignore'
-        )
-
-        # getting what I need
-        df_filtered = df[['total', 'author.login', 'author.id']]
-        # changing column names
-        df_filtered.columns = ['Commits', 'Contributor', 'GitHub_ID']
-        # df_filtered = df_filtered.sort_values(by='Commits', ascending=False)
-        df_filtered.info(verbose=False)
-        
-        print(df_filtered.head())
-        # df_filtered.to_csv("./data/git_commits_stats.csv")
-
-    elif response.status_code == 202:
-        print("Compiling data, try again shortly")
-    else:
-        print(f"Error: {response.status_code}")
-
-
-
-def get_contributions():
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "Authorization": f"Bearer {github_key}"
-    }
-
     base_url = "https://api.github.com"
-    git_contributors_url = "/repos/git/git/contributors"
-    test_url = "/repos/cucharoth/chatroth/contributors"
-    url = base_url + git_contributors_url
-
+    stargazer_url = "/repos/rust-lang/rust/stargazers"
+    test_url = "/repos/cucharoth/chatroth/stats/contributors"
+    url = base_url + stargazer_url
+    
     all_results = []
 
-    while url:
-        response = requests.get(url, headers=headers)
+    # sorted_data = sorted(data, key=lambda x: x["total"], reverse=True)
+    page = 1
+    while True:
+        
+        print(f'current page: {page}')
+        response = requests.get(url + f'?per_page=100&page={page}', headers=headers)
 
         if response.status_code == 200:
-            print(response.headers.get("Link", ""))
             data = response.json()
             
             all_results.extend(data)
+            print(f'datos en pagina: {len(data)}')
 
-            link_header = response.headers.get("Link", "")
-            next_url = None
-            for link in link_header.split(","):
-                if 'rel="next"' in link:
-                    next_url = link[link.find("<")+1:link.find(">")]
-                    break
-
-            url = next_url
             
-        elif response.status_code == 202:
-            print("Compiling data, try again shortly")
-            break
+            # if less than 100 commits there's no more pages
+            if len(data) < 100:
+                break 
+            
+            # page += 1
+            
+            # 'don't get banned' check
+            time.sleep(1)
+        
         else:
             print(f"Error: {response.status_code}")
+            print(f'{response.url}')
             break
 
     # parsing
@@ -95,16 +59,24 @@ def get_contributions():
         meta=None, 
         errors='ignore'
     )
+
     # getting what I need
-    df_filtered = df[['contributions', 'login', 'id']]
+    # df_filtered = df[['total', 'author.login', 'author.id']]
     # changing column names
-    df_filtered.columns = ['Contributions', 'Contributor', 'GitHub_ID']
+    # df_filtered.columns = ['Commits', 'Contributor', 'GitHub_ID']
     # df_filtered = df_filtered.sort_values(by='Commits', ascending=False)
-    df_filtered.info(verbose=False)
+    # df_filtered.info(verbose=False)
     
-    print(df_filtered.head())
-    # df_filtered.to_csv("./data/git_contributors.csv")
+    print(df.head())
+    df.to_csv("./data/rust_data.csv")
+
+def get_repos():
+    base_url = "https://api.github.com"
+    stargazer_url = "/repos//rust/stargazers"
+    test_url = "/repos/cucharoth/chatroth/stats/contributors"
+    url = base_url + stargazer_url
+
 
 if __name__ == "__main__":
-    # get_commits_stats()
-    get_contributions()
+    # get_data()
+    get_repos()
