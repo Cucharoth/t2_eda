@@ -23,12 +23,12 @@
 
         <main class="flex-grow p-4 bg-background">
             <div class="text-xl py-4 text-gray-300 text-center">
-                Análisis realizado sobre 12000 repositorios creados por 500 usuarios distintos.
+                Análisis realizado sobre 12000 repositorios creados por 500 usuarios diferentes.
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="bg-secondary p-4 rounded shadow min-h-100">
                     <div class="flex flex-col h-full text-gray-300">
-                        <h3 class="text-center">Forks amount | size</h3>
+                        <h3 class="text-center">Forks amount | size (K-means finding - elbow method)</h3>
                         <div id="plot-1" class="flex h-full justify-center items-center">
                         </div>
                     </div>
@@ -50,25 +50,22 @@
                 </div>
                 <div class="bg-secondary p-4 rounded shadow min-h-100">
                     <div class="flex flex-col h-full text-gray-300">
-                        <h3 class="">COSO 4</h3>
-                        <div class="flex h-full justify-center items-center">
-                            <p>CONTENT</p>
+                        <h3 class="text-center">Created Per Year</h3>
+                        <div id="plot-4" class="flex h-full justify-center items-center">
                         </div>
                     </div>
                 </div>
                 <div class="bg-secondary p-4 rounded shadow min-h-100">
                     <div class="flex flex-col h-full text-gray-300">
-                        <h3 class="">COSO 5</h3>
-                        <div class="flex h-full justify-center items-center">
-                            <p>CONTENT</p>
+                        <h3 class="text-center">Open Issues vs Stars</h3>
+                        <div id="plot-5" class="flex h-full justify-center items-center">
                         </div>
                     </div>
                 </div>
                 <div class="bg-secondary p-4 rounded shadow min-h-100">
                     <div class="flex flex-col h-full text-gray-300">
-                        <h3 class="">COSO 6</h3>
-                        <div class="flex h-full justify-center items-center">
-                            <p>CONTENT</p>
+                        <h3 class="text-center">Stars Over Time</h3>
+                        <div id="plot-6" class="flex h-full justify-center items-center">
                         </div>
                     </div>
                 </div>
