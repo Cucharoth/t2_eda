@@ -978,6 +978,19 @@ wheels = [
 ]
 
 [[package]]
+name = "kneed"
+version = "0.8.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "scipy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ba/0f/958e27a378042e0366dfea8baab4a53121cb37c114117666051390cd7bb8/kneed-0.8.5.tar.gz", hash = "sha256:a4847ac4f1d04852fea278d5de7aa8bfdc3beb7fbca4a182fec0f0efee43f4b1", size = 12783 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/9a/1b/7e726d8616e813007874468c61790099ba21493e0ea07561b7d9fc53151c/kneed-0.8.5-py3-none-any.whl", hash = "sha256:2f3fbd4e9bd808e65052841448702c41ea64d5fc78735cbfc97ab25f08bd9815", size = 10290 },
+]
+
+[[package]]
 name = "markupsafe"
 version = "3.0.2"
 source = { registry = "https://pypi.org/simple" }
@@ -2025,6 +2038,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "dotenv" },
+    { name = "kneed" },
     { name = "matplotlib" },
     { name = "notebook" },
     { name = "pandas" },
@@ -2036,6 +2050,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "dotenv", specifier = ">=0.9.9" },
+    { name = "kneed", specifier = ">=0.8.5" },
     { name = "matplotlib", specifier = ">=3.10.1" },
     { name = "notebook", specifier = ">=7.3.3" },
     { name = "pandas", specifier = ">=2.2.3" },
