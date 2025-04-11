@@ -20,7 +20,7 @@ fetch("./data/plot_ready/forks__size.json")
         document.getElementById("plot-1").appendChild(chart);
     });
 
-fetch("../data/plot_ready/branch_data.json")
+fetch("./data/plot_ready/branch_data.json")
     .then((res) => res.json())
     .then((data) => {
         const chart = Plot.plot({
@@ -51,7 +51,7 @@ fetch("../data/plot_ready/branch_data.json")
         document.getElementById("plot-2").appendChild(chart);
     });
 
-fetch("../data/plot_ready/top_starred.json")
+fetch("./data/plot_ready/top_starred.json")
     .then((res) => res.json())
     .then((data) => {
         const chart = Plot.plot({
@@ -77,7 +77,7 @@ fetch("../data/plot_ready/top_starred.json")
         document.getElementById("plot-3").appendChild(chart);
     });
 
-fetch("../data/plot_ready/created_year.json")
+fetch("./data/plot_ready/created_year.json")
     .then((res) => res.json())
     .then((data) => {
         const chart = Plot.plot({
@@ -108,7 +108,7 @@ fetch("../data/plot_ready/created_year.json")
         document.getElementById("plot-4").appendChild(chart);
     });
 
-fetch("../data/plot_ready/issues_vs_stars.json")
+fetch("./data/plot_ready/issues_vs_stars.json")
     .then((res) => res.json())
     .then((data) => {
         const chart = Plot.plot({
@@ -145,7 +145,7 @@ fetch("../data/plot_ready/issues_vs_stars.json")
         document.getElementById("plot-5").appendChild(chart);
     });
 
-fetch("../data/plot_ready/stars_over_time.json")
+fetch("./data/plot_ready/stars_over_time.json")
     .then((res) => res.json())
     .then((data) => {
         const chart = Plot.plot({
